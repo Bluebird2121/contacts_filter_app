@@ -11,9 +11,14 @@ import java.util.regex.PatternSyntaxException;
 @RequestMapping("/hello")
 public class ContactsCtrl {
 
+    private final ContactsService contactsService;
+
+    public ContactsCtrl(ContactsService contactsService) {
+        this.contactsService = contactsService;
+    }
+
     @RequestMapping(value = "contacts", method=RequestMethod.GET)
-    public @ResponseBody
-    Contacts filterContacts(@RequestParam(value="nameFilter") String regexp, ContactsService contactsService) {
+    public @ResponseBody Contacts filterContacts(@RequestParam(value="nameFilter") String regexp) {
         try {
             return contactsService.filter(Pattern.compile(regexp));
         } catch (PatternSyntaxException e) {
