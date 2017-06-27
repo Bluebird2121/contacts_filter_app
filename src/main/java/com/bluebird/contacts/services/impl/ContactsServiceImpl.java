@@ -3,9 +3,11 @@ package com.bluebird.contacts.services.impl;
 import com.bluebird.contacts.domain.entity.Contact;
 import com.bluebird.contacts.domain.repository.ContactRepository;
 import com.bluebird.contacts.dtos.Contacts;
+import com.bluebird.contacts.dtos.PaginationInfo;
 import com.bluebird.contacts.services.ContactsService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -30,9 +32,22 @@ public class ContactsServiceImpl implements ContactsService {
         List<Contact> resultContacts = StreamSupport.stream(allContacts.spliterator(), IS_PARALLELED)
                 .filter(x -> ! nameFilter.matcher(x.getName()).find())
                 .skip(page * CONTACTS_PER_PAGE)
-                .limit(CONTACTS_PER_PAGE)
+                .limit(CONTACTS_PER_PAGE + 1)
                 .collect(Collectors.toList());
 
-        return new Contacts(resultContacts);
+        if (resultContacts.isEmpty()) {
+            return Contacts.empty();
+        }
+        /*boolean isNextPagePresent = resultContacts.size() > CONTACTS_PER_PAGE;
+        Contacts contacts = new Contacts(isNextPagePresent ? resultContacts.subList(0, resultContacts.size() - 1) : resultContacts);
+        PaginationInfo paginationInfo = new PaginationInfo();
+        if (page != 0) {
+            paginationInfo.setPrev("http://localhost:8080/hello/contacts?page="+(page-1)+"&nameFilter="+nameFilter.pattern());
+        }
+        if (isNextPagePresent) {
+            paginationInfo.setNext("http://localhost:8080/hello/contacts?page="+(page+1)+"&nameFilter="+nameFilter.pattern());
+        }
+        contacts.setPagination(paginationInfo);*/
+        return null;
     }
 }
