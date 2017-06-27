@@ -37,4 +37,10 @@ public class ContactsCtrlTest {
         mockMvc.perform(get(endpointUrl+"("))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void justTestCircleCI() throws Exception {
+        mockMvc.perform(get(endpointUrl+"*"))
+                .andExpect(status().isOk());
+    }
 }
