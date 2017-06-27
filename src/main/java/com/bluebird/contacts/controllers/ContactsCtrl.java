@@ -18,9 +18,10 @@ public class ContactsCtrl {
     }
 
     @RequestMapping(value = "contacts", method=RequestMethod.GET)
-    public @ResponseBody Contacts filterContacts(@RequestParam(value="nameFilter") String regexp) {
+    public @ResponseBody Contacts filterContacts(@RequestParam(value="page") int page,
+                                                 @RequestParam(value="nameFilter") String regexp) {
         try {
-            return contactsService.filter(Pattern.compile(regexp));
+            return contactsService.filter(page, Pattern.compile(regexp));
         } catch (PatternSyntaxException e) {
             throw new IllegalArgumentException(String.format("Filter value '%s' is invalid.", regexp));
         }

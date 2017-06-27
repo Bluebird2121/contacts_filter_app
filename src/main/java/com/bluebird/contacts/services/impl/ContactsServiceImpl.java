@@ -21,7 +21,7 @@ public class ContactsServiceImpl implements ContactsService {
     }
 
     @Override
-    public Contacts filter(Pattern nameFilter) {
+    public Contacts filter(int page, Pattern nameFilter) {
         Iterable<Contact> allContacts = contactRepository.findAll();
         Contacts result = new Contacts();
 

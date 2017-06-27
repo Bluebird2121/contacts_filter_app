@@ -7,5 +7,5 @@ import java.util.regex.Pattern;
 public interface ContactsService {
 
     //TODO Come up with good name for this something like reverse filter
-    Contacts filter(Pattern nameFilter);
+    Contacts filter(int page, Pattern nameFilter);
 }
