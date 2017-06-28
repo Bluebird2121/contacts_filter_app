@@ -1,0 +1,15 @@
+machine:
+  environment:
+    NODE_ENV: test
+  node:
+    version: v4.1.0
+  services:
+    - postgresql
+
+database:
+  override:
+    - createdb test
+    - echo "CREATE ROLE jirareport WITH UNENCRYPTED PASSWORD 'jirareport';" | psql -U postgres
+    - echo "ALTER ROLE api WITH LOGIN;" | psql -U postgres
+    - echo "GRANT SELECT, UPDATE, INSERT ON ALL TABLES IN SCHEMA contactsdb.public TO api;" | psql -U postgres
+    - echo "GRANT CREATE, CONNECT ON DATABASE contactsdb TO api;" | psql -U postgres
