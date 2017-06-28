@@ -14,6 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
@@ -55,7 +56,7 @@ public class ContactsCtrlTest {
         String urlTemplate = "/hello/contacts?page=0&nameFilter=(";
         mockMvc.perform(get(urlTemplate))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("Filter value '(' is invalid."));
+                .andExpect(jsonPath("$.message", is("Filter value '(' is invalid.")));
     }
 
 
