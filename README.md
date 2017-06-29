@@ -21,7 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 <h4>Run</h4>
     <ol>
         <li>Go to directory in which you want project to be stored.</li>
-        <li>Clone project to local machine: <br><code> git clone https://github.com/Bluebird2121/contacts_filter_app.git<code></li>
+        <li>Clone project to local machine: <br><code> git clone https://github.com/Bluebird2121/contacts_filter_app.git</code></li>
         <li>execute <code>$ vagrant up</code> <br> It will take a while for first time run.</li>
     </ol>
     After installation just try 
