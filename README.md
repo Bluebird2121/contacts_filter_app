@@ -1,10 +1,10 @@
-<h3>Contacts Filter Service</h3>
+<h2>Contacts Filter Service</h2>
 
 CircleCI status: <a href="https://circleci.com/gh/Bluebird2121/contacts_filter_app/tree/master"><img src="https://circleci.com/gh/Bluebird2121/contacts_filter_app.png"></a>
 <br>
 This project represents REST Service which gives possibility to filter contacts with Regular Expression. 
 
-<h4>Getting Started</h4>
+<h3>Getting Started</h3>
 
 These instructions will get you a copy of the project up and running on your local machine
 
@@ -30,7 +30,7 @@ These instructions will get you a copy of the project up and running on your loc
     </a> endpoint and you should see filtered result
   
 
-<h4>System Dependencies*</h4>
+<h3>System Dependencies*</h3>
   <ul>
     <li><a href="http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html">Java 8</a> - Programming language</li>
     <li><a href="https://projects.spring.io/spring-boot/">Spring Boot</a> - Tool for easy application Development</li>
