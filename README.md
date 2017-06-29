@@ -27,7 +27,7 @@ These instructions will get you a copy of the project up and running on your loc
     After installation just try 
     <a href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=">
     http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=
-    </a> endpoint and you should see filtered result
+    </a> endpoint and you should see filtered results
   
 
 <h3>System Dependencies*</h3>
