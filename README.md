@@ -22,7 +22,7 @@ These instructions will get you a copy of the project up and running on your loc
     <ol>
         <li>Go to directory in which you want project to be stored.</li>
         <li>Clone project to local machine: <br><code> git clone https://github.com/Bluebird2121/contacts_filter_app.git</code></li>
-        <li>execute <code>$ vagrant up</code> <br> It will take a while for first time run.</li>
+        <li>execute <code>$ vagrant up</code> It will take a while for the first time run.</li>
     </ol>
     After installation just try 
     <a href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=">
