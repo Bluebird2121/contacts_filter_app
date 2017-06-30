@@ -3,11 +3,11 @@ package com.bluebird.contacts.services.impl;
 import com.bluebird.contacts.domain.entity.Contact;
 import com.bluebird.contacts.domain.repository.ContactRepository;
 import com.bluebird.contacts.dtos.Contacts;
-import com.bluebird.contacts.dtos.PaginationInfo;
 import com.bluebird.contacts.services.ContactsService;
+import com.bluebird.contacts.util.FullNameGenerator;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -27,7 +27,7 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public Contacts filter(int page, Pattern nameFilter) {
-        Iterable<Contact> allContacts = contactRepository.findAll();
+        Iterable<Contact> allContacts = null;// contactRepository.findAll();
 
         List<Contact> resultContacts = StreamSupport.stream(allContacts.spliterator(), IS_PARALLELED)
                 .filter(x -> ! nameFilter.matcher(x.getName()).find())
@@ -49,5 +49,18 @@ public class ContactsServiceImpl implements ContactsService {
         }
         contacts.setPagination(paginationInfo);*/
         return null;
+    }
+
+    @Override
+    public void populateContactsData() {
+        int contactsSize = 1_000_000;
+        List<Contact> contactsToSave = new ArrayList<>(contactsSize);
+        for (int i = 0; i < contactsSize; i++) {
+            Contact contactToAdd = new Contact();
+            contactToAdd.setId(i);
+            contactToAdd.setName(FullNameGenerator.generate());
+            contactsToSave.add(contactToAdd);
+        }
+        contactRepository.save(contactsToSave);
     }
 }

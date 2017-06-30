@@ -8,4 +8,6 @@ public interface ContactsService {
 
     //TODO Come up with good name for this something like reverse filter
     Contacts filter(int page, Pattern nameFilter);
+
+    void populateContactsData();
 }
