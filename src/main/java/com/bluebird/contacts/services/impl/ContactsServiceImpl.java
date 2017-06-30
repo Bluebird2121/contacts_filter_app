@@ -53,7 +53,7 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public void populateContactsData() {
-        int contactsSize = 1_000_000;
+        int contactsSize = 100_000;
         List<Contact> contactsToSave = new ArrayList<>(contactsSize);
         for (int i = 0; i < contactsSize; i++) {
             Contact contactToAdd = new Contact();
