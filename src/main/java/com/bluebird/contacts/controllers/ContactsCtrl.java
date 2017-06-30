@@ -17,7 +17,13 @@ public class ContactsCtrl {
         this.contactsService = contactsService;
     }
 
-    @RequestMapping(value = "contacts", method=RequestMethod.GET)
+    @RequestMapping(value = "/contacts/populate_contacts_data", method=RequestMethod.GET)
+    public void populateContactsData() {
+        System.out.println("Populating...");
+        contactsService.populateContactsData();
+    }
+
+    @RequestMapping(value = "/contacts", method=RequestMethod.GET)
     public @ResponseBody Contacts filterContacts(@RequestParam(value="page") int page,
                                                  @RequestParam(value="nameFilter") String regexp) {
         try {
