@@ -1,6 +1,6 @@
 <h2>Contacts Filter Service</h2>
 
-CircleCI status: <a href="https://circleci.com/gh/Bluebird2121/contacts_filter_app/tree/master"><img src="https://circleci.com/gh/Bluebird2121/contacts_filter_app.png"></a>
+<a href="https://circleci.com/gh/Bluebird2121/contacts_filter_app/tree/master"><img src="https://circleci.com/gh/Bluebird2121/contacts_filter_app.png"></a>
 
 This project represents REST Service which gives possibility to filter contacts with Regular Expression. 
 
@@ -9,11 +9,10 @@ This project represents REST Service which gives possibility to filter contacts 
 These instructions will get you a copy of the project up and running on your local machine
 
 <h4>Prerequisites</h4>
-  To be able to run the project this software should be installed:  
+  If you not already using Vagrant, follow these steps:
   <ul>
-    <li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></li>
-    <li><a href="https://www.vagrantup.com/downloads.html">Vagrant<a></li>
-    <li><a href="https://git-scm.com/downloads">Git</a></li>
+    <li>Install <a href="https://www.vagrantup.com/downloads.html">Vagrant</a></li>
+    <li>Install a provider <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a></li>
   </ul>
 
 
@@ -21,10 +20,11 @@ These instructions will get you a copy of the project up and running on your loc
     <ol>
         <li>Go to directory in which you want project to be stored.</li>
         <li>Clone project to local machine: <br><code> git clone https://github.com/Bluebird2121/contacts_filter_app.git</code></li>
-        <li>go inside the project folder</li>
-        <li>execute <code>$ vagrant up</code> <br><span style="color:orange;">Warning</span> it will take a while for the first time run.</li>
+        <li>Go the project folder</li>
+        <li>Execute <code>vagrant up</code> 
+        <br>Note, it will take a while for the first time run.</li>
     </ol>
-    After installation just try 
+    After installation just visit 
     <a href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=">
     http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=
     </a> endpoint and you should see filtered results
