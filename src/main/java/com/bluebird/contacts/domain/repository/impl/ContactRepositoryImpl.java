@@ -42,23 +42,15 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public List<Contact> findAllFiltered(Predicate<Contact> predicate, int skipAmount, int limitAmount) {
-        ScrollableResults scrollableResults = null;
-        try (StatelessSession session = sessionFactory.openStatelessSession()) {
-            Transaction tx = session.beginTransaction();
-            tx.begin();
-            scrollableResults = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY);
+        try (StatelessSession session = sessionFactory.openStatelessSession();
+             ScrollableResults scrollableResults = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY)) {
+
             Stream<Contact> stream = ScrollableResultsConverter.toStream(scrollableResults, Contact.class);
-            List<Contact> result = stream
+            return stream
                     .filter(predicate)
                     .skip(skipAmount)
                     .limit(limitAmount)
                     .collect(Collectors.toList());
-            tx.commit();
-            return result;
-        } finally {
-            if (scrollableResults != null) {
-                scrollableResults.close();
-            }
         }
     }
 }
