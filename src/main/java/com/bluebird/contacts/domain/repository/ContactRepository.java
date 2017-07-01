@@ -8,6 +8,5 @@ import java.util.stream.Stream;
 
 public interface ContactRepository {
     void save(List<Contact> contactsToSave);
-
     List<Contact> findAll(Function<Stream<Contact>,  List<Contact>> streamContactFunction);
 }

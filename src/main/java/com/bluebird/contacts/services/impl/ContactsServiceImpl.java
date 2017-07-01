@@ -26,8 +26,9 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public Contacts filterNameNotMatch(int page, Pattern nameFilter) {
-        List<Contact> resultContacts = contactRepository.findAll(stream ->
-            stream.filter(x -> !nameFilter.matcher(x.getName()).find())
+        List<Contact> resultContacts = contactRepository.findAll(
+            stream -> stream
+                .filter(x -> !nameFilter.matcher(x.getName()).find())
                 .skip(page * CONTACTS_PER_PAGE)
                 .limit(CONTACTS_PER_PAGE + 1)
                 .collect(Collectors.toList())

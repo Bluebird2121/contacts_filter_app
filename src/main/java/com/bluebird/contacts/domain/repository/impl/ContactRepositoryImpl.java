@@ -55,7 +55,6 @@ public class ContactRepositoryImpl implements ContactRepository {
             return result;
         } finally {
             if (scrollableResults != null) {
-                System.out.println("Close");
                 scrollableResults.close();
             }
             if (session != null) {
