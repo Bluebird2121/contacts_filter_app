@@ -25,14 +25,19 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public void save(List<Contact> contactsToSave) {
-        StatelessSession session = sessionFactory.openStatelessSession();
-        Transaction tx = session.beginTransaction();
+        Transaction tx = null;
+        try (StatelessSession session = sessionFactory.openStatelessSession()) {
+             tx = session.beginTransaction();
+             tx.begin();
 
-        for (Contact c : contactsToSave) {
-            session.insert(c);
+            for (Contact c : contactsToSave) {
+                session.insert(c);
+            }
+        } finally {
+            if (tx != null) {
+                tx.commit();
+            }
         }
-        tx.commit();
-        session.close();
     }
 
     @Override
