@@ -31,10 +31,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 <h3>Resources</h3>
 
-|                     URL                           | Description                                                                | Method   | URL Params  | Success Response | Error Response |
-| ------------------------------------------------- |:--------------------------------------------------------------------------:|:--------:| :----------:|-----------------:|---------------:|
-| /hello/contacts/<br>populate_contacts_data            | Fill contacts table with fake data. By default it creates 100_000 record.  | GET      |     -       | Code: 200 OK     | Code: 400 <br> BAD_REQUEST   |
-| /hello/contacts?page=:page&nameFilter=:nameFilter |                                                                            | GET      |    page     |                  |                |
+|                     URL                           | Description                                                                   | Method   | URL Params  | Success Response                                                                      | Error Response                                                                      A |
+| ------------------------------------------------- |:-----------------------------------------------------------------------------:|:--------:| :----------:|--------------------------------------------------------------------------------------:|--------------------------------------------------------------------------------------:|
+| /hello/contacts/populate_contacts_data            | Fill contacts table with fake data. By default it creates 100_000 record.     | GET      |     -       | Code: 200 OK                                                                          | Code: 400 BAD_REQUEST <br> Content: {"message":"Can't populate not empty database."}  |
+| /hello/contacts?page=:page&nameFilter=:nameFilter | Returns contacts whose names are NOT match :nameFilter. Result are paginated. | GET      |    page     | Code: 200 OK <br> Content: {"contacts":[{"id":1,"name":"John Doe"}],"pagination":{}}  |                                                                                       |
 
 
 
