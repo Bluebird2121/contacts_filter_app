@@ -19,7 +19,6 @@ public class ContactsCtrl {
 
     @RequestMapping(value = "/contacts/populate_contacts_data", method=RequestMethod.GET)
     public void populateContactsData() {
-        System.out.println("Populating...");
         contactsService.populateContactsData();
     }
 

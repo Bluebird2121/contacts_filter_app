@@ -1,4 +1,4 @@
-package com.bluebird.contacts.util;
+package com.bluebird.contacts.utils;
 
 import java.util.Random;
 
