@@ -52,6 +52,9 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public void populateContactsData() {
+        if (!isDatabaseEmpty()) {
+            throw new IllegalStateException("Can't populate not empty database.");
+        }
         List<Contact> contactsToSave = new ArrayList<>(populateContactsAmount);
         for (int i = 0; i < populateContactsAmount; i++) {
             Contact contactToAdd = new Contact();
@@ -60,5 +63,10 @@ public class ContactsServiceImpl implements ContactsService {
             contactsToSave.add(contactToAdd);
         }
         contactRepository.save(contactsToSave);
+    }
+
+    private boolean isDatabaseEmpty() {
+        List<Contact> firstContact = contactRepository.findAllFiltered(e -> true, 0, 1);
+        return firstContact.isEmpty();
     }
 }

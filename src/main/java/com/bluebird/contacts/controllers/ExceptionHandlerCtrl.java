@@ -11,8 +11,8 @@ import java.io.IOException;
 @ControllerAdvice
 public class ExceptionHandlerCtrl {
 
-    @ExceptionHandler({IllegalArgumentException.class})
-    ResponseEntity<ErrorDto> handleIllegalArgumentException(IllegalArgumentException ex) throws IOException {
+    @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
+    ResponseEntity<ErrorDto> handleException(Exception ex) throws IOException {
         ErrorDto errorDto = new ErrorDto();
         errorDto.setMessage(ex.getMessage());
         return ResponseEntity
