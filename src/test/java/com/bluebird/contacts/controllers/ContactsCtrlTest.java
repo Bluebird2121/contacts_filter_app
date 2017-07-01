@@ -52,10 +52,10 @@ public class ContactsCtrlTest {
 
     @Test
     public void testWithBadNameFilterPattern() throws Exception {
-        String urlTemplate = "/hello/contacts?page=0&nameFilter=(";
+        String urlTemplate = ENDPOINT_URL+"?"+PAGE_FILTER+"0&" +NAME_FILTER+"=(";
         mockMvc.perform(get(urlTemplate))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", is("Filter value '(' is invalid.")));
+                .andExpect(jsonPath("$.message", is("Filter value '=(' is invalid.")));
     }
 
 
