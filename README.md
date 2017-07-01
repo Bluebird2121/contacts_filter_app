@@ -31,11 +31,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 <h3>Resources</h3>
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+|                     URL                           | Are           | Cool  |
+| -------------------------------------------------- |:-------------:| -----:|
+| /hello/contacts?page=:page&nameFilter=:nameFilter | right-aligned | $1600 |
+| col 2 is                                          | centered      |   $12 |
+| zebra stripes                                     | are neat      |    $1 |
 
 
 
