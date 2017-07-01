@@ -27,15 +27,14 @@ These instructions will get you a copy of the project up and running on your loc
     After installation just visit 
     <a href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=">
     http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=
-    </a> endpoint and you should see filtered results
+    </a> endpoint and you should see filtered results.
 
 <h3>Resources</h3>
 
-|                     URL                           | Are           | Cool  |
-| -------------------------------------------------- |:-------------:| -----:|
-| /hello/contacts?page=:page&nameFilter=:nameFilter | right-aligned | $1600 |
-| col 2 is                                          | centered      |   $12 |
-| zebra stripes                                     | are neat      |    $1 |
+|                     URL                           | Description                                                                | Method   | URL Params  | Success Response | Error Response |
+| ------------------------------------------------- |:--------------------------------------------------------------------------:|:--------:| -----------:|-----------------:|---------------:|
+| /hello/contacts/populate_contacts_data            | Fill contacts table with fake data. By default it creates 100_000 record.  | GET      |     -       | Code: 200 OK     | Code: 400 BAD_REQUEST Content: { message: "Can't populate not empty database." }                |
+| /hello/contacts?page=:page&nameFilter=:nameFilter |                                                                            | GET      |    page     |                  |                |
 
 
 
