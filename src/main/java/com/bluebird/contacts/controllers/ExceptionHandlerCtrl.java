@@ -5,16 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @ControllerAdvice
 public class ExceptionHandlerCtrl {
 
     @ExceptionHandler({IllegalArgumentException.class})
-    ResponseEntity<ErrorDto> handleIllegalArgumentException(IllegalArgumentException ex, HttpServletResponse response) throws IOException {
+    ResponseEntity<ErrorDto> handleIllegalArgumentException(IllegalArgumentException ex) throws IOException {
         ErrorDto errorDto = new ErrorDto();
         errorDto.setMessage(ex.getMessage());
         return ResponseEntity
