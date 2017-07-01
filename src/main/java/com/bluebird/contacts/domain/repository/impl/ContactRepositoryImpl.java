@@ -50,11 +50,10 @@ public class ContactRepositoryImpl implements ContactRepository {
             tx.begin();
             scrollableResults = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY);
             Stream<Contact> stream = ScrollableResultsConverter.toStream(scrollableResults, Contact.class);
-            tx.commit();
             result = streamContactFunction.apply(stream);
+            tx.commit();
         } finally {
             if (scrollableResults != null) {
-                System.out.println("Close");
                 scrollableResults.close();
             }
             if (session != null) {
