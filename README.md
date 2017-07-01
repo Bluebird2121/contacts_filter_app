@@ -28,7 +28,12 @@ These instructions will get you a copy of the project up and running on your loc
     <a href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=">
     http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=
     </a> endpoint and you should see filtered results
-  
+
+<h3>Resources</h3>
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
 
 <h3>System Dependencies*</h3>
   <ul>
