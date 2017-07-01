@@ -52,8 +52,10 @@ public class ContactRepositoryImpl implements ContactRepository {
             Stream<Contact> stream = ScrollableResultsConverter.toStream(scrollableResults, Contact.class);
             result = streamContactFunction.apply(stream);
             tx.commit();
+            return result;
         } finally {
             if (scrollableResults != null) {
+                System.out.println("Close");
                 scrollableResults.close();
             }
             if (session != null) {

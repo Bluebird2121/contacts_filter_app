@@ -29,7 +29,7 @@ public class ContactsServiceImpl implements ContactsService {
     }
 
     @Override
-    public Contacts filter(int page, Pattern nameFilter) {
+    public Contacts filterNameNotMatch(int page, Pattern nameFilter) {
         List<Contact> resultContacts = contactRepository.findAll(stream ->
             stream.filter(x -> !nameFilter.matcher(x.getName()).find())
                 .skip(page * CONTACTS_PER_PAGE)
