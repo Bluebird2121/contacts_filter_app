@@ -32,8 +32,8 @@ These instructions will get you a copy of the project up and running on your loc
 <h3>Resources</h3>
 
 |                     URL                           | Description                                                                | Method   | URL Params  | Success Response | Error Response |
-| ------------------------------------------------- |:--------------------------------------------------------------------------:|:--------:| -----------:|-----------------:|---------------:|
-| /hello/contacts/populate_contacts_data            | Fill contacts table with fake data. By default it creates 100_000 record.  | GET      |     -       | Code: 200 OK     | Code: 400 BAD_REQUEST Content: { message: "Can't populate not empty database." }                |
+| ------------------------------------------------- |:--------------------------------------------------------------------------:|:--------:| :----------:|-----------------:|---------------:|
+| /hello/contacts/<br>populate_contacts_data            | Fill contacts table with fake data. By default it creates 100_000 record.  | GET      |     -       | Code: 200 OK     | Code: 400 BAD_REQUEST Content: { message: "Can't populate not empty database." }                |
 | /hello/contacts?page=:page&nameFilter=:nameFilter |                                                                            | GET      |    page     |                  |                |
 
 
