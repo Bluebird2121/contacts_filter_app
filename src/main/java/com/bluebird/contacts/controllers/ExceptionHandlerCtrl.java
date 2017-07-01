@@ -13,8 +13,7 @@ public class ExceptionHandlerCtrl {
 
     @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})
     ResponseEntity<ErrorDto> handleException(Exception ex) throws IOException {
-        ErrorDto errorDto = new ErrorDto();
-        errorDto.setMessage(ex.getMessage());
+        ErrorDto errorDto = new ErrorDto(ex.getMessage());
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(errorDto);
