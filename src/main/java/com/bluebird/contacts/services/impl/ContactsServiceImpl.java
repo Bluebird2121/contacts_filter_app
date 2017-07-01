@@ -31,7 +31,8 @@ public class ContactsServiceImpl implements ContactsService {
     }
 
     @Override
-    public ContactsDto filterNameNotMatch(int page, Pattern namePattern) {
+    public ContactsDto filterNameNotMatch(int page, String regexp) {
+        Pattern namePattern = Pattern.compile(regexp);
         int skipAmount = page * contactsPerPage;
         int limitAmount = contactsPerPage + 1;
         List<Contact> filteredContacts

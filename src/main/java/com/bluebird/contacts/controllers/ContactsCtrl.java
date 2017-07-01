@@ -2,6 +2,7 @@ package com.bluebird.contacts.controllers;
 
 import com.bluebird.contacts.dtos.ContactsDto;
 import com.bluebird.contacts.services.ContactsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.regex.Pattern;
@@ -27,7 +28,7 @@ public class ContactsCtrl {
     ContactsDto filterContactsNameNotMatch(@RequestParam(value="page") int page,
                                            @RequestParam(value="nameFilter") String regexp) {
         try {
-            return contactsService.filterNameNotMatch(page, Pattern.compile(regexp));
+            return contactsService.filterNameNotMatch(page, regexp);
         } catch (PatternSyntaxException e) {
             throw new IllegalArgumentException(String.format("Filter value '%s' is invalid.", regexp));
         }
