@@ -1,9 +1,9 @@
 package com.bluebird.contacts.services;
 
-import com.bluebird.contacts.dtos.Contacts;
+import com.bluebird.contacts.dtos.ContactsDto;
 import java.util.regex.Pattern;
 
 public interface ContactsService {
-    Contacts filterNameNotMatch(int page, Pattern nameFilter);
+    ContactsDto filterNameNotMatch(int page, Pattern nameFilter);
     void populateContactsData();
 }

@@ -3,19 +3,15 @@ package com.bluebird.contacts.domain.repository.impl;
 import com.bluebird.contacts.domain.entity.Contact;
 import com.bluebird.contacts.domain.repository.ContactRepository;
 import com.bluebird.contacts.domain.repository.util.ScrollableResultsConverter;
-import com.bluebird.contacts.domain.util.ScrollableResultsIterator;
-import org.hibernate.*;
 import org.springframework.stereotype.Repository;
+import org.hibernate.*;
 
 import javax.persistence.EntityManagerFactory;
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
-import java.util.Spliterator;
-import java.util.Spliterators;
-import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 @Repository
 @Transactional
@@ -40,27 +36,24 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
-    public List<Contact> findAll(Function<Stream<Contact>,  List<Contact>> streamContactFunction) {
-        StatelessSession session = null;
+    public List<Contact> findAllFiltered(Predicate<Contact> predicate, int skipAmount, int limitAmount) {
         ScrollableResults scrollableResults = null;
-        List<Contact> result = Collections.emptyList();
-        try {
-            session = sessionFactory.openStatelessSession();
+        try (StatelessSession session = sessionFactory.openStatelessSession()) {
             Transaction tx = session.beginTransaction();
             tx.begin();
             scrollableResults = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY);
             Stream<Contact> stream = ScrollableResultsConverter.toStream(scrollableResults, Contact.class);
-            result = streamContactFunction.apply(stream);
+            List<Contact> result = stream
+                    .filter(predicate)
+                    .skip(skipAmount)
+                    .limit(limitAmount)
+                    .collect(Collectors.toList());
             tx.commit();
             return result;
         } finally {
             if (scrollableResults != null) {
                 scrollableResults.close();
             }
-            if (session != null) {
-                session.close();
-            }
-            return result;
         }
     }
 }

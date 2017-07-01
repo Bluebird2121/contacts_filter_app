@@ -1,6 +1,6 @@
 package com.bluebird.contacts.controllers;
 
-import com.bluebird.contacts.dtos.Contacts;
+import com.bluebird.contacts.dtos.ContactsDto;
 import com.bluebird.contacts.services.ContactsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +23,9 @@ public class ContactsCtrl {
     }
 
     @RequestMapping(value = "/contacts", method=RequestMethod.GET)
-    public @ResponseBody Contacts filterContactsNameNotMatch(@RequestParam(value="page") int page,
-                                                               @RequestParam(value="nameFilter") String regexp) {
+    public @ResponseBody
+    ContactsDto filterContactsNameNotMatch(@RequestParam(value="page") int page,
+                                           @RequestParam(value="nameFilter") String regexp) {
         try {
             return contactsService.filterNameNotMatch(page, Pattern.compile(regexp));
         } catch (PatternSyntaxException e) {
