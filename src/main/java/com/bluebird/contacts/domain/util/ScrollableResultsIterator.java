@@ -1,0 +1,40 @@
+/*
+ * Hibernate, Relational Persistence for Idiomatic Java
+ *
+ * License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+ * See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ */
+package com.bluebird.contacts.domain.util;
+
+import org.hibernate.ScrollableResults;
+
+import java.util.Iterator;
+
+
+public class ScrollableResultsIterator<T> implements Iterator<T>, AutoCloseable {
+
+	private final ScrollableResults scrollableResults;
+
+	private boolean isClosed;
+
+	public ScrollableResultsIterator(ScrollableResults scrollableResults) {
+		this.scrollableResults = scrollableResults;
+	}
+
+	@Override
+	public void close() {
+		scrollableResults.close();
+		isClosed = true;
+	}
+
+	@Override
+	public boolean hasNext() {
+		return !isClosed && scrollableResults.next();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public T next() {
+		return (T) scrollableResults.get(0);
+	}
+}

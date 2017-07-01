@@ -3,21 +3,24 @@ package com.bluebird.contacts.services.impl;
 import com.bluebird.contacts.domain.entity.Contact;
 import com.bluebird.contacts.domain.repository.ContactRepository;
 import com.bluebird.contacts.dtos.Contacts;
+import com.bluebird.contacts.dtos.PaginationInfo;
 import com.bluebird.contacts.services.ContactsService;
 import com.bluebird.contacts.util.FullNameGenerator;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Service
 public class ContactsServiceImpl implements ContactsService {
 
-    private static final boolean IS_PARALLELED = false;
-    private static final int CONTACTS_PER_PAGE = 1;
+    private static final int CONTACTS_PER_PAGE = 1000;
 
     private final ContactRepository contactRepository;
 
@@ -27,18 +30,16 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public Contacts filter(int page, Pattern nameFilter) {
-        Iterable<Contact> allContacts = null;// contactRepository.findAll();
-
-        List<Contact> resultContacts = StreamSupport.stream(allContacts.spliterator(), IS_PARALLELED)
-                .filter(x -> ! nameFilter.matcher(x.getName()).find())
+        List<Contact> resultContacts = contactRepository.findAll(stream ->
+            stream.filter(x -> !nameFilter.matcher(x.getName()).find())
                 .skip(page * CONTACTS_PER_PAGE)
                 .limit(CONTACTS_PER_PAGE + 1)
-                .collect(Collectors.toList());
-
+                .collect(Collectors.toList())
+        );
         if (resultContacts.isEmpty()) {
             return Contacts.empty();
         }
-        /*boolean isNextPagePresent = resultContacts.size() > CONTACTS_PER_PAGE;
+        boolean isNextPagePresent = resultContacts.size() > CONTACTS_PER_PAGE;
         Contacts contacts = new Contacts(isNextPagePresent ? resultContacts.subList(0, resultContacts.size() - 1) : resultContacts);
         PaginationInfo paginationInfo = new PaginationInfo();
         if (page != 0) {
@@ -47,8 +48,8 @@ public class ContactsServiceImpl implements ContactsService {
         if (isNextPagePresent) {
             paginationInfo.setNext("http://localhost:8080/hello/contacts?page="+(page+1)+"&nameFilter="+nameFilter.pattern());
         }
-        contacts.setPagination(paginationInfo);*/
-        return null;
+        contacts.setPagination(paginationInfo);
+        return contacts;
     }
 
     @Override
