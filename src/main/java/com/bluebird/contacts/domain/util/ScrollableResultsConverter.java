@@ -1,6 +1,5 @@
-package com.bluebird.contacts.domain.repository.util;
+package com.bluebird.contacts.domain.util;
 
-import com.bluebird.contacts.domain.util.ScrollableResultsIterator;
 import org.hibernate.ScrollableResults;
 
 import java.util.Spliterator;
@@ -10,7 +9,7 @@ import java.util.stream.StreamSupport;
 
 public class ScrollableResultsConverter {
 
-    public static <T> Stream<T> toStream(ScrollableResults queryResult, Class<T> streamtype) {
+    public static <T> Stream<T> toStream(ScrollableResults queryResult, Class<T> type) {
         ScrollableResultsIterator<T> iterator = new ScrollableResultsIterator<>( queryResult );
         Spliterator<T> spliterator = Spliterators.spliteratorUnknownSize( iterator, Spliterator.NONNULL );
         return StreamSupport.stream( spliterator, false );

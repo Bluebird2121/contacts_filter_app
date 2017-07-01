@@ -2,7 +2,7 @@ package com.bluebird.contacts.domain.repository.impl;
 
 import com.bluebird.contacts.domain.entity.Contact;
 import com.bluebird.contacts.domain.repository.ContactRepository;
-import com.bluebird.contacts.domain.repository.util.ScrollableResultsConverter;
+import com.bluebird.contacts.domain.util.ScrollableResultsConverter;
 import org.springframework.stereotype.Repository;
 import org.hibernate.*;
 
