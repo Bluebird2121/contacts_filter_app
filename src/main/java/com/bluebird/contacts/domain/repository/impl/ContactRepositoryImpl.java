@@ -24,7 +24,7 @@ public class ContactRepositoryImpl implements ContactRepository {
     @Override
     public void save(List<Contact> contactsToSave) {
         if (contactsToSave == null) {
-            throw new IllegalArgumentException("Contacts to save can't be null");
+            throw new IllegalArgumentException("Can't save null contacts list");
         }
         try (StatelessSession session = sessionFactory.openStatelessSession()) {
             Transaction tx = session.getTransaction();
