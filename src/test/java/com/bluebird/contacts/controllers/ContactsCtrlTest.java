@@ -20,7 +20,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import java.util.regex.PatternSyntaxException;
+
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -68,6 +72,15 @@ public class ContactsCtrlTest {
         mockMvc.perform(get(ENDPOINT_URL + "?" + PAGE_FILTER + "1"))
                 .andExpect(status().isBadRequest())
                 .andExpect(status().reason(is("Required String parameter 'nameFilter' is not present")));
+    }
+
+    @Test
+    public void testFilterWithPatternSyntaxException() throws Exception {
+        Mockito.when(mockContactsService.filterNameNotMatch(anyInt(), anyString()))
+                .thenThrow(new PatternSyntaxException("Wrong pattern", "(", 0));
+        mockMvc.perform(get(ENDPOINT_URL + "?" + PAGE_FILTER + "1&"+NAME_FILTER + "=("))
+                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Filter value '=(' is invalid."));
     }
 
     @Test
