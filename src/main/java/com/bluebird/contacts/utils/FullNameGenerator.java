@@ -4,30 +4,30 @@ import java.util.Random;
 
 public class FullNameGenerator {
 
-    private static String[] beginningParts = { "Kr", "Ca", "Ra", "Mrok", "Cru",
+    private static final String[] BEGIN_PARTS = { "Kr", "Ca", "Ra", "Mrok", "Cru",
             "Ray", "Bre", "Zed", "Drak", "Mor", "Jag", "Mer", "Jar", "Mjol",
             "Zork", "Mad", "Cry", "Zur", "Creo", "Azak", "Azur", "Rei", "Cro",
             "Mar", "Luk" };
-    private static String[] middleParts = { "air", "ir", "mi", "sor", "mee", "clo",
+    private static final String[] MIDDLE_PARTS = { "air", "ir", "mi", "sor", "mee", "clo",
             "red", "cra", "ark", "arc", "miri", "lori", "cres", "mur", "zer",
             "marac", "zoir", "slamar", "salmar", "urak" };
-    private static String[] endParts = { "d", "ed", "ark", "arc", "es", "er", "der",
+    private static final String[] END_PARTS = { "d", "ed", "ark", "arc", "es", "er", "der",
             "tron", "med", "ure", "zur", "cred", "mur" };
 
-    private static Random rand = new Random();
+    private static Random random = new Random();
 
     public static String generate() {
-        return firstName() + " " + lastName();
+        return firstName() + ' ' + lastName();
     }
 
     private static String firstName() {
-        return beginningParts[rand.nextInt(beginningParts.length)] +
-                endParts[rand.nextInt(endParts.length)];
+        return BEGIN_PARTS[random.nextInt(BEGIN_PARTS.length)] +
+                END_PARTS[random.nextInt(END_PARTS.length)];
     }
 
     private static String lastName() {
-        return beginningParts[rand.nextInt(beginningParts.length)] +
-                middleParts[rand.nextInt(middleParts.length)] +
-                endParts[rand.nextInt(endParts.length)];
+        return BEGIN_PARTS[random.nextInt(BEGIN_PARTS.length)] +
+                MIDDLE_PARTS[random.nextInt(MIDDLE_PARTS.length)] +
+                END_PARTS[random.nextInt(END_PARTS.length)];
     }
 }

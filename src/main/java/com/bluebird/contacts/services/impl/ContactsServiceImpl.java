@@ -58,9 +58,7 @@ public class ContactsServiceImpl implements ContactsService {
         }
         List<Contact> contactsToSave = new ArrayList<>(populateContactsAmount);
         for (int i = 0; i < populateContactsAmount; i++) {
-            Contact contactToAdd = new Contact();
-            contactToAdd.setId(i);
-            contactToAdd.setName(FullNameGenerator.generate());
+            Contact contactToAdd = new Contact(i, FullNameGenerator.generate());
             contactsToSave.add(contactToAdd);
         }
         contactRepository.save(contactsToSave);

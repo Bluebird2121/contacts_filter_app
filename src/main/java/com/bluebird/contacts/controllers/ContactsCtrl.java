@@ -10,6 +10,8 @@ import com.bluebird.contacts.services.ContactsService;
 @RequestMapping("/hello")
 public class ContactsCtrl {
 
+    private static final String INVALID_FILTER_VALUE_MSG = "Filter value '%s' is invalid.";
+
     private final ContactsService contactsService;
 
     public ContactsCtrl(ContactsService contactsService) {
@@ -28,7 +30,7 @@ public class ContactsCtrl {
         try {
             return contactsService.filterNameNotMatch(page, regexp);
         } catch (PatternSyntaxException e) {
-            throw new IllegalArgumentException(String.format("Filter value '%s' is invalid.", regexp));
+            throw new IllegalArgumentException(String.format(INVALID_FILTER_VALUE_MSG, regexp), e);
         }
     }
 

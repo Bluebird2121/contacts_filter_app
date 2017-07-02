@@ -1,8 +1,6 @@
 package com.bluebird.contacts.domain.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -12,9 +10,6 @@ public class Contact {
     private long id;
 
     private String name;
-
-    public Contact() {
-    }
 
     public Contact(long id, String name) {
         this.id = id;
@@ -45,14 +40,20 @@ public class Contact {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
         Contact contact = (Contact) o;
-
         return id == contact.id;
     }
 
     @Override
     public int hashCode() {
         return (int) id * 32;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
