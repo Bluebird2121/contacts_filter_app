@@ -86,16 +86,6 @@ public class ContactRepositoryTest {
         assertTrue(resultAS4L1.isEmpty());
     }
 
-    private void assertResultNotContains(Contact johnDeer, Contact alexA, Contact alexB, Contact petyaA, Contact alexC, Contact johnDoe) {
-    }
-
-
-    private void assertResultContains(Contact... args) {
-        for (Contact arg : args) {
-            
-        }
-    }
-
     private void assertDbContainsContact(Contact johnDoe) {
         List<Contact> filteredPaginated = repository.findFilteredPaginated(contact -> contact.getId() == johnDoe.getId(), 0, 1);
         assertNotNull(filteredPaginated);
