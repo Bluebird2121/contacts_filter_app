@@ -1,9 +1,12 @@
 package com.bluebird.contacts.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.regex.PatternSyntaxException;
 
 import com.bluebird.contacts.dtos.ContactsDto;
+import com.bluebird.contacts.dtos.SuccessDto;
 import com.bluebird.contacts.services.ContactsService;
 
 @RestController
@@ -19,8 +22,11 @@ public class ContactsCtrl {
     }
 
     @RequestMapping(value = "/contacts/populate_contacts_data", method = RequestMethod.GET)
-    public void populateContactsData() {
+    public ResponseEntity<SuccessDto> populateContactsData() {
         contactsService.populateContactsData();
+        SuccessDto result = new SuccessDto();
+        result.setMessage("Db successfully populated");
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)

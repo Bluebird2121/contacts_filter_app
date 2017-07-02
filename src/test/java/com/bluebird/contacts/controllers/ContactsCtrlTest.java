@@ -1,7 +1,5 @@
 package com.bluebird.contacts.controllers;
 
-import com.bluebird.contacts.configs.AppConfig;
-import com.bluebird.contacts.services.ContactsService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-
 import java.util.regex.PatternSyntaxException;
+
+import com.bluebird.contacts.configs.AppConfig;
+import com.bluebird.contacts.services.ContactsService;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.anyInt;
@@ -102,6 +102,7 @@ public class ContactsCtrlTest {
     @Test
     public void testPopulateEmptyDatabase() throws Exception {
         mockMvc.perform(get(ENDPOINT_URL + POPULATE_CONTACTS_URL))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Db successfully populated"));
     }
 }
