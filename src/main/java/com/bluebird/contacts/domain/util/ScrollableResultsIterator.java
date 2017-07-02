@@ -11,7 +11,7 @@ import org.hibernate.ScrollableResults;
 import java.util.Iterator;
 
 
-public class ScrollableResultsIterator<T> implements Iterator<T>, AutoCloseable {
+public class ScrollableResultsIterator<T> implements Iterator<T> {
 
 	private final ScrollableResults scrollableResults;
 
@@ -19,12 +19,6 @@ public class ScrollableResultsIterator<T> implements Iterator<T>, AutoCloseable 
 
 	public ScrollableResultsIterator(ScrollableResults scrollableResults) {
 		this.scrollableResults = scrollableResults;
-	}
-
-	@Override
-	public void close() {
-		scrollableResults.close();
-		isClosed = true;
 	}
 
 	@Override
