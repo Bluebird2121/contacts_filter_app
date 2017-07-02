@@ -38,6 +38,21 @@ public class ContactRepositoryTest {
         assertContainsContact(johnDoe);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testFilterWithNullPredicate() throws Exception {
+        repository.findFilteredPaginated(null, 0, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFilterWithNegativeSkipAmount() throws Exception {
+        repository.findFilteredPaginated(c -> true, -1, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFilterWithNegativeLimitAmount() throws Exception {
+        repository.findFilteredPaginated(c -> true, 0, -1);
+    }
+
     private void assertContainsContact(Contact johnDoe) {
         List<Contact> filteredPaginated = repository.findFilteredPaginated(contact -> contact.getId() == johnDoe.getId(), 0, 1);
         assertNotNull(filteredPaginated);
