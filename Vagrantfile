@@ -67,8 +67,8 @@ Vagrant.configure("2") do |config|
    config.vm.provision :shell, path: "Vagrant-setup/main.sh"
    config.vm.provision :shell, path: "Vagrant-setup/database.sh"
    config.vm.provision :shell, run: "always", inline: <<-SHELL
-     cd /vagrant && mvn clean package
-     sudo rm -f -r /tmp/webapps && sudo mkdir /tmp/webapps
-     sudo cp target/contacts.filter.app-0.0.1.jar /tmp/webapps/ && sudo java -jar /tmp/webapps/contacts.filter.app-0.0.1.jar
+     cd /vagrant &&
+     sudo rm -f -r /tmp/webapps/contacts_app && sudo mkdir -p /tmp/webapps/contacts_app &&
+     sudo cp -a . /tmp/webapps/contacts_app && echo %JAVA_HOME && mvn clean package && sudo java -jar target/contacts.filter.app-0.0.1.jar
    SHELL
 end
