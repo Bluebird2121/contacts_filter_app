@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository
-@Transactional
 public class ContactRepositoryImpl implements ContactRepository {
 
     private SessionFactory  sessionFactory;
@@ -26,14 +25,17 @@ public class ContactRepositoryImpl implements ContactRepository {
     @Override
     public void save(List<Contact> contactsToSave) {
         try (StatelessSession session = sessionFactory.openStatelessSession()) {
+            Transaction tx = session.getTransaction();
+            tx.begin();
             for (Contact c : contactsToSave) {
                 session.insert(c);
             }
+            tx.commit();
         }
     }
 
     @Override
-    public List<Contact> findAllFiltered(Predicate<Contact> predicate, int skipAmount, int limitAmount) {
+    public List<Contact> findFilteredPaginated(Predicate<Contact> predicate, int skipAmount, int limitAmount) {
         try (StatelessSession session = sessionFactory.openStatelessSession();
              ScrollableResults scrollableResults = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY)) {
 

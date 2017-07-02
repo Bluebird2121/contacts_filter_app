@@ -36,7 +36,7 @@ public class ContactsServiceImpl implements ContactsService {
         int skipAmount = page * contactsPerPage;
         int limitAmount = contactsPerPage + 1;
         List<Contact> filteredContacts
-                = contactRepository.findAllFiltered(c -> !namePattern.matcher(c.getName()).find(), skipAmount, limitAmount);
+                = contactRepository.findFilteredPaginated(c -> !namePattern.matcher(c.getName()).find(), skipAmount, limitAmount);
         if (filteredContacts == null || filteredContacts.isEmpty()) {
             return ContactsDto.empty();
         }
@@ -67,7 +67,7 @@ public class ContactsServiceImpl implements ContactsService {
     }
 
     private boolean isDatabaseEmpty() {
-        List<Contact> firstContact = contactRepository.findAllFiltered(e -> true, 0, 1);
+        List<Contact> firstContact = contactRepository.findFilteredPaginated(e -> true, 0, 1);
         return firstContact.isEmpty();
     }
 }

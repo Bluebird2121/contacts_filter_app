@@ -7,5 +7,5 @@ import java.util.function.Predicate;
 
 public interface ContactRepository {
     void save(List<Contact> contactsToSave);
-    List<Contact> findAllFiltered(Predicate<Contact> predicate, int skipAmount, int limitAmount);
+    List<Contact> findFilteredPaginated(Predicate<Contact> predicate, int skipAmount, int limitAmount);
 }
