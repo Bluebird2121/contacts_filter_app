@@ -24,9 +24,12 @@ These instructions will get you a copy of the project up and running on your loc
         <li>Execute <code>vagrant up</code> 
         <br>Note, it will take a while for the first time run.</li>
     </ol>
-    After installation just visit 
-    <a href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=">
-    http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=
+    After installation just populate database with data by visiting: 
+    <a target="_blank" href="http://192.168.50.4:8080/hello/contacts/populate_contacts_data">http://192.168.50.4:8080/hello/contacts/populate_contacts_data</a> 
+    <br>
+    Now you are able to check filter:
+    <a target="_blank" href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=^(?!A)">
+    http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=^(?!A)
     </a> endpoint and you should see filtered results.
 
 <h3>Resources</h3>
