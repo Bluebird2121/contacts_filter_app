@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,18 +23,27 @@ public class ContactRepositoryTest {
     @Autowired
     private ContactRepository repository;
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSaveWithNullInput() throws Exception {
+        repository.save(null);
+    }
+
     @Test
-    public void name() throws Exception {
-        assertNotNull(repository);
+    public void testSave() throws Exception {
         List<Contact> contactsToSave = new ArrayList<>();
-        Contact contactw = new Contact();
-        contactw.setId(1);
-        contactw.setName("Abc");
-        contactsToSave.add(contactw);
+        Contact johnDoe = new Contact(1, "John Doe");
+        contactsToSave.add(johnDoe);
         repository.save(contactsToSave);
 
-        List<Contact> filteredPaginated = repository.findFilteredPaginated(contact -> contact.getId() == 1, 0, 1);
-        assertNotNull(filteredPaginated);
+        assertContainsContact(johnDoe);
+    }
 
+    private void assertContainsContact(Contact johnDoe) {
+        List<Contact> filteredPaginated = repository.findFilteredPaginated(contact -> contact.getId() == johnDoe.getId(), 0, 1);
+        assertNotNull(filteredPaginated);
+        assertEquals(filteredPaginated.size(), 1);
+        Contact contactFromDb = filteredPaginated.get(0);
+        assertNotNull(contactFromDb);
+        assertEquals(johnDoe, contactFromDb);
     }
 }
