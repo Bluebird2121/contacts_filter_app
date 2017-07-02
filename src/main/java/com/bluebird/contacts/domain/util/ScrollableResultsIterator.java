@@ -15,15 +15,13 @@ public class ScrollableResultsIterator<T> implements Iterator<T> {
 
 	private final ScrollableResults scrollableResults;
 
-	private boolean isClosed;
-
 	public ScrollableResultsIterator(ScrollableResults scrollableResults) {
 		this.scrollableResults = scrollableResults;
 	}
 
 	@Override
 	public boolean hasNext() {
-		return !isClosed && scrollableResults.next();
+		return scrollableResults.next();
 	}
 
 	@Override
