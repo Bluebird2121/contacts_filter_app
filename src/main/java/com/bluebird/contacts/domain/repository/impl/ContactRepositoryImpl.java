@@ -38,6 +38,9 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public List<Contact> findFilteredPaginated(Predicate<Contact> predicate, int skipAmount, int limitAmount) {
+        if (predicate == null) {
+            throw new IllegalArgumentException("Can't filter with null predicate");
+        }
         try (StatelessSession session = sessionFactory.openStatelessSession();
              ScrollableResults scrollableResults = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY)) {
 
