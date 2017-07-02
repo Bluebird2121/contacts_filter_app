@@ -1,9 +1,9 @@
 package com.bluebird.contacts.domain.repository;
 
-import com.bluebird.contacts.domain.entity.Contact;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import com.bluebird.contacts.domain.entity.Contact;
 
 public interface ContactRepository {
     void save(List<Contact> contactsToSave);

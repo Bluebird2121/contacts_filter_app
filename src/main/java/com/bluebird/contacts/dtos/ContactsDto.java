@@ -1,13 +1,13 @@
 package com.bluebird.contacts.dtos;
 
-import com.bluebird.contacts.domain.entity.Contact;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.data.web.PageableDefault;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import com.bluebird.contacts.domain.entity.Contact;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class ContactsDto {
 
@@ -26,10 +26,10 @@ public class ContactsDto {
         contacts = builder.resultContacts;
         PaginationInfo paginationInfo = new PaginationInfo();
         if (builder.page > 0) {
-            paginationInfo.setPrev(builder.appBaseLink + "contacts?page="+(builder.page-1)+"&nameFilter="+builder.namePattern.pattern());
+            paginationInfo.setPrev(builder.appBaseLink + "contacts?page=" + (builder.page - 1) + "&nameFilter=" + builder.namePattern.pattern());
         }
         if (builder.isMoreResults) {
-            paginationInfo.setNext(builder.appBaseLink + "contacts?page="+(builder.page+1)+"&nameFilter="+builder.namePattern.pattern());
+            paginationInfo.setNext(builder.appBaseLink + "contacts?page=" + (builder.page + 1) + "&nameFilter=" + builder.namePattern.pattern());
         }
         pagination = paginationInfo;
     }

@@ -1,12 +1,10 @@
 package com.bluebird.contacts.controllers;
 
+import org.springframework.web.bind.annotation.*;
+import java.util.regex.PatternSyntaxException;
+
 import com.bluebird.contacts.dtos.ContactsDto;
 import com.bluebird.contacts.services.ContactsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 @RestController
 @RequestMapping("/hello")
@@ -18,15 +16,15 @@ public class ContactsCtrl {
         this.contactsService = contactsService;
     }
 
-    @RequestMapping(value = "/contacts/populate_contacts_data", method=RequestMethod.GET)
+    @RequestMapping(value = "/contacts/populate_contacts_data", method = RequestMethod.GET)
     public void populateContactsData() {
         contactsService.populateContactsData();
     }
 
-    @RequestMapping(value = "/contacts", method=RequestMethod.GET)
+    @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public @ResponseBody
-    ContactsDto filterContactsNameNotMatch(@RequestParam(value="page") int page,
-                                           @RequestParam(value="nameFilter") String regexp) {
+    ContactsDto filterContactsNameNotMatch(@RequestParam(value = "page") int page,
+                                           @RequestParam(value = "nameFilter") String regexp) {
         try {
             return contactsService.filterNameNotMatch(page, regexp);
         } catch (PatternSyntaxException e) {

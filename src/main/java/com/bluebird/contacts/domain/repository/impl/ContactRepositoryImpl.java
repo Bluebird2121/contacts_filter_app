@@ -1,21 +1,21 @@
 package com.bluebird.contacts.domain.repository.impl;
 
-import com.bluebird.contacts.domain.entity.Contact;
-import com.bluebird.contacts.domain.repository.ContactRepository;
-import com.bluebird.contacts.domain.util.ScrollableResultsConverter;
 import org.hibernate.*;
 import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.persistence.EntityManagerFactory;
+
+import com.bluebird.contacts.domain.entity.Contact;
+import com.bluebird.contacts.domain.repository.ContactRepository;
+import com.bluebird.contacts.domain.util.ScrollableResultsConverter;
 
 @Repository
 public class ContactRepositoryImpl implements ContactRepository {
 
-    private SessionFactory  sessionFactory;
+    private SessionFactory sessionFactory;
 
     public ContactRepositoryImpl(EntityManagerFactory sessionFactory) {
         this.sessionFactory = sessionFactory.unwrap(SessionFactory.class);
@@ -42,7 +42,8 @@ public class ContactRepositoryImpl implements ContactRepository {
             throw new IllegalArgumentException("Can't filter with null predicate");
         }
         try (StatelessSession session = sessionFactory.openStatelessSession();
-             ScrollableResults scrollableResults = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY)) {
+             ScrollableResults scrollableResults
+                     = session.createQuery("SELECT c FROM Contact c").scroll(ScrollMode.FORWARD_ONLY)) {
 
             Stream<Contact> stream = ScrollableResultsConverter.toStream(scrollableResults, Contact.class);
             return stream

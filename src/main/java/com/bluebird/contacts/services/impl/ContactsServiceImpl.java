@@ -1,17 +1,16 @@
 package com.bluebird.contacts.services.impl;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 import com.bluebird.contacts.domain.entity.Contact;
 import com.bluebird.contacts.domain.repository.ContactRepository;
 import com.bluebird.contacts.dtos.ContactsDto;
 import com.bluebird.contacts.services.ContactsService;
 import com.bluebird.contacts.utils.FullNameGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class ContactsServiceImpl implements ContactsService {
@@ -36,8 +35,8 @@ public class ContactsServiceImpl implements ContactsService {
         Pattern namePattern = Pattern.compile(regexp);
         int skipAmount = page * contactsPerPage;
         int limitAmount = contactsPerPage + 1;
-        List<Contact> filteredContacts
-                = contactRepository.findFilteredPaginated(c -> !namePattern.matcher(c.getName()).find(), skipAmount, limitAmount);
+        List<Contact> filteredContacts = contactRepository
+                .findFilteredPaginated(c -> !namePattern.matcher(c.getName()).find(), skipAmount, limitAmount);
         if (filteredContacts == null || filteredContacts.isEmpty()) {
             return ContactsDto.empty();
         }

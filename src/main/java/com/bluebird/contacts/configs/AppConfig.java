@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "com.bluebird.contacts.domain.repository",
         "com.bluebird.contacts.services"})
 @EntityScan("com.bluebird.contacts.domain.entity")
-@EnableJpaRepositories( "com.bluebird.contacts.domain.repository")
+@EnableJpaRepositories("com.bluebird.contacts.domain.repository")
 public class AppConfig {
 
     public static void main(String[] args) {

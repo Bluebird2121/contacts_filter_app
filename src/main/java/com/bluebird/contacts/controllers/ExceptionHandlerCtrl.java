@@ -1,12 +1,12 @@
 package com.bluebird.contacts.controllers;
 
-import com.bluebird.contacts.dtos.ErrorDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import java.io.IOException;
+
+import com.bluebird.contacts.dtos.ErrorDto;
 
 @ControllerAdvice
 public class ExceptionHandlerCtrl {
