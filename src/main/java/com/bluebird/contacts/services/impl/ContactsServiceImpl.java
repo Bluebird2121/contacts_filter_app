@@ -5,6 +5,7 @@ import com.bluebird.contacts.domain.repository.ContactRepository;
 import com.bluebird.contacts.dtos.ContactsDto;
 import com.bluebird.contacts.services.ContactsService;
 import com.bluebird.contacts.utils.FullNameGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +54,7 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public void populateContactsData() {
-        if (!isDatabaseEmpty()) {
+        if (!contactRepository.isEmpty()) {
             throw new IllegalStateException("Can't populate not empty database.");
         }
         List<Contact> contactsToSave = new ArrayList<>(populateContactsAmount);
@@ -64,10 +65,5 @@ public class ContactsServiceImpl implements ContactsService {
             contactsToSave.add(contactToAdd);
         }
         contactRepository.save(contactsToSave);
-    }
-
-    private boolean isDatabaseEmpty() {
-        List<Contact> firstContact = contactRepository.findFilteredPaginated(e -> true, 0, 1);
-        return firstContact.isEmpty();
     }
 }

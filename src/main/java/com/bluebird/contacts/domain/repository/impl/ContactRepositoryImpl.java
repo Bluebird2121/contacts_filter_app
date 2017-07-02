@@ -52,4 +52,9 @@ public class ContactRepositoryImpl implements ContactRepository {
                     .collect(Collectors.toList());
         }
     }
+
+    @Override
+    public boolean isEmpty() {
+        return findFilteredPaginated(e -> true, 0, 1).isEmpty();
+    }
 }
