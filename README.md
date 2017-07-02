@@ -30,7 +30,7 @@ These instructions will get you a copy of the project up and running on your loc
     Now you are able to check filter:
     <a target="_blank" href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=^(?!A)">
     http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=^(?!A)
-    </a> endpoint and you should see filtered results.
+    </a>
 
 <h3>Resources</h3>
 
