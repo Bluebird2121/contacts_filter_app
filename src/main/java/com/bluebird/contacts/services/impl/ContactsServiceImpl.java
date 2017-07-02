@@ -42,7 +42,7 @@ public class ContactsServiceImpl implements ContactsService {
             return ContactsDto.empty();
         }
         boolean isMoreResults = filteredContacts.size() > contactsPerPage;
-        List<Contact> resultContacts = isMoreResults ? filteredContacts.subList(0, contactsPerPage - 1) : filteredContacts;
+        List<Contact> resultContacts = isMoreResults ? filteredContacts.subList(0, contactsPerPage) : filteredContacts;
         return new ContactsDto.Builder()
                 .resultContacts(resultContacts)
                 .isMoreResults(isMoreResults)
