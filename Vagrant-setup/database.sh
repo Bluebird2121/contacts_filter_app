@@ -91,6 +91,7 @@ CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
                                   LC_CTYPE='en_US.utf8'
                                   ENCODING='UTF8'
                                   TEMPLATE=template0;
+GRANT ALL PRIVILEGES ON TABLE contact TO $APP_DB_USER;
 EOF
 
 # Tag the provision time:
