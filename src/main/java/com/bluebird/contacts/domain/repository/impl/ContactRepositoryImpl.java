@@ -3,11 +3,10 @@ package com.bluebird.contacts.domain.repository.impl;
 import com.bluebird.contacts.domain.entity.Contact;
 import com.bluebird.contacts.domain.repository.ContactRepository;
 import com.bluebird.contacts.domain.util.ScrollableResultsConverter;
-import org.springframework.stereotype.Repository;
 import org.hibernate.*;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManagerFactory;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -24,6 +23,9 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public void save(List<Contact> contactsToSave) {
+        if (contactsToSave == null) {
+            throw new IllegalArgumentException("Contacts to save can't be null");
+        }
         try (StatelessSession session = sessionFactory.openStatelessSession()) {
             Transaction tx = session.getTransaction();
             tx.begin();
