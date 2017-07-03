@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "canimus/ubuntu-java8"
+  config.vm.box = "ubuntu/trusty32"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,6 +69,6 @@ Vagrant.configure("2") do |config|
    config.vm.provision :shell, run: "always", inline: <<-SHELL
      cd /vagrant &&
      sudo rm -f -r /tmp/webapps/contacts_app && sudo mkdir -p /tmp/webapps/contacts_app &&
-     sudo cp -a . /tmp/webapps/contacts_app && echo %JAVA_HOME && mvn clean package && sudo java -jar target/contacts.filter.app-0.0.1.jar
+     sudo cp -a . /tmp/webapps/contacts_app && mvn clean package && sudo java -jar target/contacts.filter.app-0.0.1.jar
    SHELL
 end
