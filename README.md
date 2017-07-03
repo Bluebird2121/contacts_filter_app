@@ -31,8 +31,7 @@ These instructions will get you a copy of the project up and running on your loc
     <a target="_blank" href="http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=(!.*?)">
     http://192.168.50.4:8080/hello/contacts?page=0&nameFilter=(!.*?)
     </a>
-    <br>
-    **Warning:** Please use some <a href="https://www.getpostman.com/">REST client</a> to make a request, because regular expressions can contains some <a href="https://stackoverflow.com/questions/1547899/which-characters-make-a-url-invalid/13500078#13500078">invalid characters</a>
+    <h5>Warning:</h5> Please use some <a href="https://www.getpostman.com/">REST client</a> to make a request, because regular expressions can contain some <a href="https://stackoverflow.com/questions/1547899/which-characters-make-a-url-invalid/13500078#13500078">invalid characters</a>
 
 <h3>Resources</h3>
 
